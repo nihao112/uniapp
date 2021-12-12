@@ -17,6 +17,22 @@
 		"path": "pages/my/my",
 		"style": {}
 	}],
+	// 配置小程序分包
+	"subPackages": [{
+		"root": "subpkg",
+		"pages": [{
+			"path": "goods_detail/goods_detail",
+			"style": {}
+
+		}, {
+			"path": "goods_list/goods_list",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}]
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "黑马优购",
