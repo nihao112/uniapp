@@ -20,7 +20,7 @@
 						<image :src="item.product_list[0].image_src" :style="{width:item.product_list[0].image_width+'rpx'}"  mode="widthFix"></image>
 					</navigator>
 					<view class="right-img-box">
-						<navigator  class="right-img-item" v-for="(ite,i) in item.product_list" :key="i" v-if="i !==0" :url="ite.url">
+						<navigator class="right-img-item" v-for="(ite,i) in item.product_list" :key="i" v-if="i !==0" :url="ite.url">
 							  <image :src="ite.image_src" :style="{width:ite.image_width+'rpx'}"  mode="widthFix"></image>
 						</navigator>
 					</view>
