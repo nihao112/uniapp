@@ -16,7 +16,16 @@ $http.beforeRequest = function(options) {
 	uni.showLoading({
 		title: "数据加载中..."
 	})
+	// 判断当前请求的是否有权限的接口
+	if(options.url.indexOf("/my/")!==-1){
+	   // 为请求头添加身份认证字段
+	    options.header = {
+	      // 字段的值可以直接从 vuex 中进行获取
+	      Authorization: store.state.m_user.token,
+	    }
+	}
 }
+
 // 响应拦截器
 $http.afterRequest = function() {
 		uni.hideLoading()
@@ -29,6 +38,7 @@ $http.afterRequest = function() {
 			icon
 		})
 	}
+
 Vue.config.productionTip = false
 
 App.mpType = 'app'

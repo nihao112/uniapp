@@ -14,8 +14,7 @@ export default {
 	  addToCart(state,goods){
 		  // 根据提交的商品id，查询购物城中是否存在这件商品
 		  // 如果不存在，则返回undefined，否则为查询的商品加入购物城
-		const findResult=state.cart.find(item=>item.goods_id===goods.goods_id)
-		
+		const findResult=state.cart.find(item=>item.goods_id===goods.goods_id)		
 		if(!findResult){
 			// 如果购物城没有这件商铺，则直接push
 			state.cart.push(goods)
