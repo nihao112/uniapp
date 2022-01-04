@@ -79,7 +79,7 @@ export default {
 			const payInfo=res2.message.pay
 			// 3.发起微信支付
 			// 3-1调用uni.requersPayment(发起微信支付)
-		const [err,succ]=await=uni.requestPayment(payInfo)
+		     const [err,succ]=await uni.requestPayment(payInfo)
 			// 3-2未完成支付
 			if(err) return uni.$showMsg("订单未支付","error")
 			// 3-3完成了支付 进一步查询支付的结果
