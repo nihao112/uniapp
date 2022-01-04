@@ -1,6 +1,8 @@
 // #ifndef VUE3
 import Vue from 'vue'
 import App from './App'
+// 导入vuex
+import store from "./store/store.js"
 // 导入网络请求的包
 import {
 	$http
@@ -20,7 +22,7 @@ $http.afterRequest = function() {
 		uni.hideLoading()
 	},
 	// 封装弹框的方法
-	uni.$showMsg = function(title,icon, duration = 1500) {
+	uni.$showMsg = function(title, icon, duration = 1500) {
 		uni.showToast({
 			title,
 			duration,
@@ -32,12 +34,13 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 
 const app = new Vue({
-	...App
+	...App,
+	store
 })
 app.$mount()
 // #endif
 
-// #ifdef VUE3
+// #ifdef VUE3 	
 import {
 	createSSRApp
 } from 'vue'

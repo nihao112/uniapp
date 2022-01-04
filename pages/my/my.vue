@@ -5,7 +5,9 @@
 </template>
 
 <script>
-	export default {
+import badgeMix from "@/mixins/tabar-badge.js"
+export default {
+mixins:[badgeMix],
 		data() {
 			return {
 				

@@ -34,7 +34,9 @@
 </template>
 
 <script>
+	import badgeMix from "@/mixins/tabar-badge.js"
 export default {
+	mixins:[badgeMix],
 	data() {
 		return {
 			// 定义轮播图数据

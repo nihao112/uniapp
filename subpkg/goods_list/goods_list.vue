@@ -46,7 +46,7 @@ export default {
 			this.isloading=true
 			// 获取商品列表数据的方法
 			const { data: res } = await uni.$http.get('/api/public/v1/goods/search', this.queryObj);
-			if (res.meta.status !== 200) return uni.$showMsg('商品列表数据请求失败！', 'error');
+		    if (res.meta.status !== 200) return uni.$showMsg("商品请求错误",'error')
 			// 关闭节流阀
 			this.isloading=false
 			// 关闭当前数据用回调函数关闭下拉刷新
@@ -84,27 +84,5 @@ export default {
 </script>
 
 <style lang="scss">
- .goods-list{
-	 display: flex;
-	 justify-content:space-between;
-	 flex-wrap: wrap;
-	 flex-direction: row;
-	 column-count: 2;
-	 -webkit-column-count: 2;
-	 background-color: #F0F0F0;
-	 .goods-item{
-		width: 175px;
-		height: 288px;
-		margin: 4px 5px;
-		border-radius: 5px;
-		 background-color: #FFFFFF;
-		 padding-bottom: 0.1em;
-		margin-bottom: 1em;
-		-moz-page-break-inside: avoid;
-		-webkit-column-break-inside: avoid;
-		break-inside: avoid;
-		background: #fff;
-		position: relative;
-	 }
- }
+
 </style>

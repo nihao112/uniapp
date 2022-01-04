@@ -75,6 +75,12 @@
 			},
 			modelValue(val) {
 				this.inputValue = +val;
+			},
+			inputValue(newVal,oldVal){
+
+				if(+newVal!==+oldVal && Number(newVal) && String(newVal).indexOf(".")===1){
+					this.$emit("change",newVal);
+				}
 			}
 		},
 		created() {
@@ -131,10 +137,10 @@
 			},
 			_onBlur(event) {
 				this.$emit('blur', event)
-				let value = event.detail.value;
+				let value =parseInt(event.detail.value) ;
 				if (!value) {
-					// this.inputValue = 0;
-					return;
+					this.inputValue = 1;
+					// return;
 				}
 				value = +value;
 				if (value > this.max) {

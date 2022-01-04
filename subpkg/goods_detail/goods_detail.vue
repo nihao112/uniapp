@@ -34,6 +34,7 @@
 </template>
 
 <script>
+	import {mapState,mapMutations,mapGetters } from "vuex"
 export default {
 	data() {
 		return {
@@ -73,6 +74,9 @@ export default {
 		this.getGoodsDetail(options.goods_id);
 	},
 	methods: {
+		// 把m-cart模块中的方法映射到这个页面
+		...mapMutations('m_cart', ['addToCart']),
+	
 		// 定义请求商品详细数据的方法
 		async getGoodsDetail(goods_id) {
 			const { data: res } = await uni.$http.get('/api/public/v1/goods/detail', { goods_id });
@@ -94,16 +98,44 @@ export default {
 		},
 		// 左侧两个按钮
 		onClick(e) {
-			console.log(1,e)
+			if(e.index===1){
+				uni.switchTab({
+					url:"/pages/cart/cart"
+				})
+			}
 		},
 		// 右侧两个按钮
 		buttonClick(e) {
-		if(e.index===1){
-			uni.switchTab({
-				url:"/pages/cart/cart"
-			})
+		   if(e.index===0){
+			   // 组织商品的信息对象
+			   const goods={
+				   goods_id:this.goods_info.goods_id,
+				   goods_name:this.goods_info.goods_name,
+				   goods_price:this.goods_info.goods_price,
+				   goods_count:1,
+				   goods_small_logo:this.goods_info.goods_small_logo,
+				   goods_state:true,
+			   }
+			   // 调用vuex方法
+			   this.addToCart(goods)
+		   }
 		}
-		}
+	},
+	computed:{
+	...mapGetters("m_cart",["total"]),
+	},
+	watch:{
+	 total: {
+	      // handler 属性用来定义侦听器的 function 处理函数
+	      handler(newVal) {
+	         const findResult = this.options.find(x => x.text === '购物车')
+	         if (findResult) {
+	            findResult.info = newVal
+	         }
+	      },
+	      // immediate 属性用来声明此侦听器，是否在页面初次加载完毕后立即调用
+	      immediate: true
+	   }
 	},
 	filters: {
 		prices(num) {
